@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />
+<div class="register-background">
+  <div class="flex justify-content-center align-items-center h-screen">
+    <p-card header="Регистрация" [style]="{ width: '400px' }" class="login-card">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="field">
+          <label for="fullName">Полное имя</label>
+          <input pInputText class="w-full" is="fullName" formControlName="fullName" />
+          @if(fullName.invalid && (fullName.dirty || fullName.touched)) {
+          <small class="block p-error">Full name is required</small>
+          }
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input pInputText class="w-full" is="email" formControlName="email" />
+          @if(email.invalid && (email.dirty || email.touched)) {
+          <small class="block p-error">
+            @if(email.hasError('required')) {
+            <span>Email is required</span>
+            } @else if(email.hasError('pattern')) {
+            <span>Email is invalid</span>
+            }
+          </small>
+          }
+        </div>
+        <div class="field">
+          <label for="password">Пароль</label>
+          <p-password
+            formControlName="password"
+            [feedback]="false"
+            toggleMask="true"
+            inputId="password"
+            class="w-full"
+            inputStyleClass="w-full"
+          >
+            @if(password.invalid && (password.dirty || password.touched)) {
+            <small class="block p-error">Password is required</small>
+            }
+          </p-password>
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Повторите пароль</label>
+          <p-password
+            formControlName="confirmPassword"
+            [feedback]="false"
+            toggleMask="true"
+            inputId="confirmPassword"
+            class="w-full"
+            inputStyleClass="w-full"
+          >
+            @if(confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)) {
+            <small class="block p-error">Confirm Password is required</small>
+            }
+          </p-password>
+
+          @if(registerForm.hasError('passwordMismatch') && password.valid && confirmPassword.valid)
+          {
+          <small class="block p-error">Password mismatch</small>
+          }
+        </div>
+        <p-button
+          type="submit"
+          label="Register"
+          styleClass="w-full"
+          [disabled]="registerForm.invalid"
+        ></p-button>
+        <div class="mt-2">Уже зарегестрированы? <a routerLink="/login">Войти</a></div>
+      </form>
+    </p-card>
+  </div>
+</div>

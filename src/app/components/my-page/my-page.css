@@ -1,0 +1,10 @@
+.wrapper {
+    background-color: #0D0D2B;
+}
+
+::ng-deep .p-button.p-button-text.p-button-plain:enabled:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Убрать потом ng-deep */

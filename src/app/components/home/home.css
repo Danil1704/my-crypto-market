@@ -1,0 +1,102 @@
+
+
+:host ::ng-deep .my-notes-btn {
+  background-color: darkcyan;
+  border: none;
+  margin-left: 20px;
+}
+
+:host ::ng-deep .my-notes-btn:hover,
+:host ::ng-deep .my-notes-btn:focus {
+  transform: none !important;
+  box-shadow: none !important;
+  background: inherit !important;
+  border-color: inherit !important;
+  color: inherit !important;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title img {
+  width: 250px;
+  height: 150px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-input span input {
+  width: 200px;
+  margin-left: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: solid 1px;
+}
+
+.search-wrapper {
+  margin-left: 10px;
+}
+
+.coin-icon {
+  width: 40px;  
+  height: 40px;    
+  border-radius: 50%;
+  object-fit: cover;  
+}
+
+.coin-cell {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.p-button.p-button-success {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.p-button.p-button-info {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.p-button:hover {
+  opacity: 0.85;
+}
+
+.p-table {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.p-table thead {
+  background-color: var(--header-background);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.p-table tbody tr:hover {
+  background-color: var(--hover-background);
+}
+
+.coin-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.coin-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}

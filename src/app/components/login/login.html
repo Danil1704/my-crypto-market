@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />
+<div class="login-background">
+  <div class="flex justify-content-center align-items-center h-screen">
+    <p-card header="Войти" [style]="{ width: '400px' }" class="login-card">
+      <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            pInputText
+            [(ngModel)]="login.email"
+            class="w-full"
+            id="email"
+            name="email"
+            #email="ngModel"
+            required
+            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+          />
+          @if(email.invalid && (email.dirty || email.touched)) {
+          <small class="block p-error">
+            @if(email.hasError('required')) {
+            <span>Email is required</span>
+            } @else if(email.hasError('pattern')){
+            <span>Email is invalid</span>
+            }
+          </small>
+          }
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <p-password
+            [(ngModel)]="login.password"
+            [feedback]="false"
+            [toggleMask]="true"
+            inpitId="password"
+            name="password"
+            #password="ngModel"
+            inputStyleClass="w-full custom-password-input"
+            styleClass="w-full"
+            required=""
+          />
+          @if(email.invalid && (email.dirty || email.touched)) {
+          <small class="block p-error"></small>
+          }
+        </div>
+        <p-button
+          label="Войти"
+          styleClass="w-full"
+          [disabled]="loginForm.invalid"
+          type="submit"
+        ></p-button>
+        <div class="mt-2">Не помните? <a routerLink="/register">Регистрация</a></div>
+      </form>
+    </p-card>
+  </div>
+</div>

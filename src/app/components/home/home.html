@@ -1,0 +1,215 @@
+<div class="title-wrapper">
+  <div class="p-d-flex p-flex-column p-ai-center p-mt-5 p-gap-3">
+    <div class="title">
+      <span>
+        <a href="home.html">
+          <img src="icon_crypto_pulse.png" alt="icon" />
+        </a>
+      </span>
+      <div class="menu-buttons">
+        <p-button
+          label="Регистрация"
+          icon="pi pi-user-plus"
+          styleClass="p-button-success my-notes-btn"
+          routerLink="/register"
+        >
+        </p-button>
+        <p-button
+          label="Войти"
+          icon="pi pi-sign-in"
+          styleClass="p-button-primary my-notes-btn"
+          routerLink="/login"
+        >
+        </p-button>
+        <p-button
+          label="Список добавленных монет"
+          icon="pi pi-list"
+          styleClass="p-button-info my-notes-btn"
+          routerLink="/notes"
+        >
+        </p-button>
+        <p-button label="QR-код" icon="pi pi-qrcode" styleClass="p-button-info my-notes-btn">
+        </p-button>
+      </div>
+    </div>
+    <div class="search-wrapper">
+      <h1>CoinMarket</h1>
+      <div class="search-input">
+        <span>
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            placeholder="Найти монету"
+            [(ngModel)]="searchText"
+            (input)="searchCoin()"
+          />
+        </span>
+      </div>
+      <div class="table-wrapper">
+        <p-table
+          [value]="filteredCoints"
+          [paginator]="true"
+          [rows]="10"
+          [responsiveLayout]="'scroll'"
+          style="width: 100%; max-width: 100%"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>24h Change</th>
+              <th>Volume</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-coin let-i="rowIndex">
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>
+                <img [src]="coin.image" alt="{{ coin.name }}" style="width: 2rem" class="me-2" />
+                {{ coin.name }}
+                <span class="text-muted text-uppercase ms-2">{{ coin.symbol }}</span>
+              </td>
+              <td>{{ coin.current_price | number : '1.2-4' }}</td>
+              <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success' : 'text-danger'">
+                {{ coin.price_change_percentage_24h | number : '1.2-2' }}%
+              </td>
+              <td>{{ coin.total_volume | number : '1.0-0' }}</td>
+              <td>
+                <p-button
+                  label="Добавить"
+                  icon="pi pi-plus"
+                  styleClass="p-button-sm p-button-success"
+                  (onClick)="openNew(coin)"
+                >
+                </p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+    <!-- Портфель -->
+    <div class="p-m-4 p-w-100">
+      <h2>Мой портфель</h2>
+      <p-button
+        label="Добавить"
+        icon="pi pi-plus"
+        styleClass="p-button-success p-ml-2"
+        (onClick)="displayDialog = true"
+      ></p-button>
+      <p-table [value]="portfolio" [responsiveLayout]="'scroll'">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Coin</th>
+            <th>Amount</th>
+            <th>Buy Price</th>
+            <th>Current Price</th>
+            <th>Total Value</th>
+            <th>P/L ($)</th>
+            <th>P/L (%)</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <!-- Колонка с иконкой и названием -->
+            <td class="coin-cell">
+              <img [src]="item.image" alt="{{ item.name }}" class="coin-icon" />
+              <span>{{ item.name }} ({{ item.symbol.toUpperCase() }})</span>
+            </td>
+
+            <td>{{ item.amount }}</td>
+            <td>{{ item.buyPrice | number : '1.0-0' }}</td>
+            <td>{{ item.currentPrice | number : '1.0-0' }}</td>
+            <td>{{ item.amount * (item.currentPrice || item.buyPrice) | number : '1.0-0' }}</td>
+
+            <td
+              [ngClass]="item.profitLoss && item.profitLoss >= 0 ? 'text-success' : 'text-danger'"
+            >
+              {{ item.profitLoss | number : '1.0-0' }}
+            </td>
+
+            <td
+              [ngClass]="
+                item.profitLossPercent && item.profitLossPercent >= 0
+                  ? 'text-success'
+                  : 'text-danger'
+              "
+            >
+              {{ item.profitLossPercent | number : '1.2-2' }}%
+            </td>
+
+            <!-- Новая колонка 24h Change -->
+            <td [ngClass]="item.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'">
+              {{ item.price_change_percentage_24h | number : '1.2-2' }}%
+            </td>
+
+            <td>
+              <button
+                pButton
+                icon="pi pi-pencil"
+                class="p-button-sm p-button-warning p-mr-2"
+                (click)="editItem(item)"
+              ></button>
+              <button
+                pButton
+                icon="pi pi-trash"
+                class="p-button-sm p-button-danger"
+                (click)="deleteItem(item)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <!-- Итог -->
+        <ng-template pTemplate="footer">
+          <tr>
+            <td colspan="4" class="text-right"><strong>Итого:</strong></td>
+            <td>
+              <strong>{{ totalValue | number : '1.0-0' }}</strong>
+            </td>
+            <td [ngClass]="totalProfitLoss >= 0 ? 'text-success' : 'text-danger'">
+              <strong>{{ totalProfitLoss | number : '1.0-0' }}</strong>
+            </td>
+            <td [ngClass]="totalProfitLossPercent >= 0 ? 'text-success' : 'text-danger'">
+              <strong>{{ totalProfitLossPercent | number : '1.2-2' }}%</strong>
+            </td>
+            <td></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- Диалог добавления/редактирования -->
+    <p-dialog
+      header="{{ editing ? 'Редактировать' : 'Добавить' }} в портфель"
+      [(visible)]="displayDialog"
+      [modal]="true"
+      [style]="{ width: '400px' }"
+    >
+      <div class="p-fluid">
+        <div class="p-field">
+          <label>Amount</label>
+          <input type="number" pInputText [(ngModel)]="newItem.amount" />
+        </div>
+        <div class="p-field">
+          <label>Buy Price</label>
+          <input type="number" pInputText [(ngModel)]="newItem.buyPrice" />
+        </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-text"
+          (click)="displayDialog = false"
+        ></p-button>
+        <p-button label="Save" icon="pi pi-check" (click)="saveItem()"></p-button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": "b64a",
+      "fullName": "Danil",
+      "email": "shdanil221029@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "86fa",
+      "fullName": "Danil",
+      "email": "shdanil221029@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "5380",
+      "fullName": "Danil",
+      "email": "shdanil221029@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "2489",
+      "fullName": "Danil",
+      "email": "shdanil221029@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "d0e3",
+      "fullName": "qqqq",
+      "email": "qqqq@qqqqq.qqqq",
+      "password": "qqqqq"
+    },
+    {
+      "id": "d024",
+      "fullName": "ddddd",
+      "email": "ddddd@dddddddddd.dddd",
+      "password": "qwerty"
+    },
+    {
+      "id": "8f93",
+      "fullName": "Danil",
+      "email": "shdanil221029@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "5b41",
+      "fullName": "Данил",
+      "email": "shdanil221029@gmail.com",
+      "password": "qwerty"
+    },
+    {
+      "id": "c140",
+      "fullName": "Dadsdsaddsfsdf",
+      "email": "ssssss@sssssss.sssss",
+      "password": "123456"
+    }
+  ],
+  "todos": [
+    {
+      "id": "1240",
+      "task": "555",
+      "completed": false
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+.login-background {
+    background-image: url("/fon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: moveBackground 20s infinite alternate linear;
+}
+
+@keyframes moveBackground {
+  0%, 100% {
+    background-position: center;
+  }
+  50% {
+    background-position: center 1px;
+  }
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);         
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  padding: 2rem;
+  color: #fff;
+}
+
+.login-card .p-card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.login-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #eee;
+}
+
+.login-card input, 
+.login-card .p-password input {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.login-card input:focus, 
+.login-card .p-password input:focus {
+  outline: none;
+  border-color: #00c6ff;
+  box-shadow: 0 0 10px rgba(0,198,255,0.6);
+}
+
+.login-card .p-button {
+  margin-top: 1rem;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 12px;
+  transition: transform 0.2s ease;
+}
+
+.login-card .p-button:hover {
+  transform: scale(1.05);
+}
+
+.login-card a {
+  color: #00c6ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+:host ::ng-deep .p-password input {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+:host ::ng-deep .p-password input:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 10px rgba(0,198,255,0.6);
+}
