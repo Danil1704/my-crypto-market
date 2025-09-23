@@ -1,5 +1,9 @@
-.wrapper {
+.wrapper-start {
     background-color: #0D0D2B;
+}
+
+.wrapper-middle {
+  background-color: #F8F9FB;
 }
 
 ::ng-deep .p-button.p-button-text.p-button-plain:enabled:hover {
@@ -8,3 +12,14 @@
 }
 
 /* Убрать потом ng-deep */
+
+.card-custom {
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+  background-color: #FFFFFF;
+}
+
+.card-custom:nth-child(1) {
+    background-color: #2B076E;
+}
