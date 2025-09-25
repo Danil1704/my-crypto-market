@@ -1,9 +1,19 @@
+
+
 .wrapper-start {
     background-color: #0D0D2B;
 }
 
 .wrapper-middle {
   background-color: #F8F9FB;
+}
+
+.wrapper-footer {
+  background-color: #0D0D2B;
+}
+
+.wrapper-section {
+  background-color: #2B076E;
 }
 
 ::ng-deep .p-button.p-button-text.p-button-plain:enabled:hover {
@@ -22,4 +32,16 @@
 
 .card-custom:nth-child(1) {
     background-color: #2B076E;
+}
+
+.modal-form {
+  width: 1200px;
+  height: 216px;
+  background-color: #3671E9;
+  border-radius: 16px;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
 }
