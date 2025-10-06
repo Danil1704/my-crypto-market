@@ -12,6 +12,9 @@ import { PortfolioService } from '../home/portfolio.service';
 import { PortfolioItem } from './portfolio-items';
 import { StyleClassModule } from 'primeng/styleclass';
 import { OverlayModule } from 'primeng/overlay';
+import { DrawerModule } from 'primeng/drawer';
+import { AvatarModule } from 'primeng/avatar';
+import { RippleModule } from 'primeng/ripple';
 
 export interface Coin {
   id: string;
@@ -26,6 +29,7 @@ export interface Coin {
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     ButtonModule,
     RouterModule,
@@ -35,7 +39,10 @@ export interface Coin {
     TableModule,
     DialogModule,
     InputNumberModule,
-    StyleClassModule
+    StyleClassModule,
+    DrawerModule,
+    AvatarModule,
+    RippleModule
   ],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
@@ -46,6 +53,11 @@ export class Home implements OnInit {
   titles: string[] = ['#', 'Coin', 'Price', 'Price Change', '24H Volume'];
   searchText: string = '';
   filteredCoints: Coin[] = [];
+
+  visible:boolean = false;
+  closeCallback: (event?: any) => void = (event?) => {
+    this.visible = false;
+  }
 
   portfolio: PortfolioItem[] = [];
   selectedCoin: any | null = null;

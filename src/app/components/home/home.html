@@ -1,11 +1,52 @@
+<p-drawer [(visible)]="visible" [closable]="false">
+  <ng-template #header>
+    <div class="flex items-center gap-2">
+      <span class="font-bold">CRAPPO</span>
+    </div>
+  </ng-template>
+  <ul class="list-none p-0 m-0 overflow-hidden">
+    <li>
+      <a href="#">
+        <i class="pi pi-desktop mr-2"></i>
+        <span class="font-medium">Dashboard</span>
+      </a>
+      <a href="/register">
+        <i class="pi pi-user-plus mr-2"></i>
+        <span class="font-medium">Registration</span>
+      </a>
+      <a href="/login">
+        <i class="pi pi-sign-in mr-2"></i>
+        <span class="font-medium">Login</span>
+      </a>
+      <a href="#">
+        <i class="pi pi-briefcase mr-2"></i>
+        <span class="font-medium">My Briefcase</span>
+      </a>
+      <a href="/my-page">
+        <i class="pi pi-home mr-2"></i>
+        <span class="font-medium">Home</span>
+      </a>
+    </li>
+  </ul>
+  <ng-template #footer>
+    <div class="flex items-center gap-2">
+      <button pButton label="Account" icon="pi pi-user" class="w-full" outlined></button>
+      <button
+        pButton
+        label="Logout"
+        icon="pi pi-sign-out"
+        class="w-full"
+        severity="danger"
+        text
+      ></button>
+    </div>
+  </ng-template>
+</p-drawer>
+<button pButton (click)="visible = true" icon="pi pi-plus"></button>
+
 <div class="title-wrapper">
   <div class="p-d-flex p-flex-column p-ai-center p-mt-5 p-gap-3">
     <div class="title">
-      <span>
-        <a href="home.html">
-          <img src="icon_crypto_pulse.png" alt="icon" />
-        </a>
-      </span>
       <div class="menu-buttons">
         <p-button
           label="Регистрация"
