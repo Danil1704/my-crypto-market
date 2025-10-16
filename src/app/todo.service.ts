@@ -5,7 +5,7 @@ import { Todo } from './components/notes/todo';
 @Injectable({
   providedIn: 'root'
 })
-export class Service {
+export class TodoService {
 
   private static readonly API_BASE_URL = 'http://localhost:3000';
   constructor(private http: HttpClient) {
@@ -13,18 +13,20 @@ export class Service {
   }
 
   getTodoList() {
-    return this.http.get<Todo[]>(`${Service.API_BASE_URL}/todos`);
+    return this.http.get<Todo[]>(`${TodoService.API_BASE_URL}/todos`);
   }
 
   addTodo(postData: Todo) {
-    return this.http.post(`${Service.API_BASE_URL}/todos`, postData);
+    return this.http.post(`${TodoService.API_BASE_URL}/todos`, postData);
   }
 
   updateTodo(postData: Todo) {
-    return this.http.patch(`${Service.API_BASE_URL}/todos/${postData.id}`, postData);
+    return this.http.patch(`${TodoService.API_BASE_URL}/todos/${postData.id}`, postData);
   }
 
   deleteTodo(id: Todo['id']) {
-    return this.http.delete(`${Service.API_BASE_URL}/todos/${id}`);
+    return this.http.delete(`${TodoService.API_BASE_URL}/todos/${id}`);
   }
 }
+
+

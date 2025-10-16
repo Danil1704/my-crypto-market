@@ -1,0 +1,41 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <h2>Analytics Dashboard</h2>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button pButton icon="pi pi-refresh" label="Обновить" class="p-button-text"></button>
+  </div>
+</p-toolbar>
+
+<div class="dashboard">
+  <div class="cards">
+    <p-card header="Посещения" class="stat-card">
+      <h2>12,430</h2>
+      <p>+15% за неделю</p>
+    </p-card>
+    <p-card header="Продажи" class="stat-card">
+      <h2>$8,900</h2>
+      <p>+10% за месяц</p>
+    </p-card>
+    <p-card header="Пользователи" class="stat-card">
+      <h2>1,230</h2>
+      <p>+5% новых</p>
+    </p-card>
+  </div>
+
+  <p-divider></p-divider>
+
+  <div class="charts">
+    <p-card header="Трафик по дням">
+      <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
+    </p-card>
+
+    <p-card header="Источники трафика">
+      <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
+    </p-card>
+
+    <p-card header="Продажи по месяцам">
+      <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+    </p-card>
+  </div>
+</div>
