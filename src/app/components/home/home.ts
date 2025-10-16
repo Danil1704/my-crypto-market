@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -11,10 +11,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { PortfolioService } from '../home/portfolio.service';
 import { PortfolioItem } from './portfolio-items';
 import { StyleClassModule } from 'primeng/styleclass';
-import { OverlayModule } from 'primeng/overlay';
 import { DrawerModule } from 'primeng/drawer';
 import { AvatarModule } from 'primeng/avatar';
 import { RippleModule } from 'primeng/ripple';
+
 
 export interface Coin {
   id: string;
@@ -54,9 +54,11 @@ export class Home implements OnInit {
   searchText: string = '';
   filteredCoints: Coin[] = [];
 
-  visible:boolean = false;
-  closeCallback: (event?: any) => void = (event?) => {
-    this.visible = false;
+  drawerVisible: boolean = false;
+  dialogVisible: boolean = false;
+
+  showDialog() {
+    this.dialogVisible = true;
   }
 
   portfolio: PortfolioItem[] = [];
@@ -98,7 +100,8 @@ export class Home implements OnInit {
         }
       });
 
-      this.calculatePortfolioMetrics(); // пересчитываем стоимость портфеля «на лету»
+
+      this.calculatePortfolioMetrics();
     }, 100); // каждые 100 мс
   }
 

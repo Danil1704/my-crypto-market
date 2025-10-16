@@ -1,0 +1,58 @@
+<div class="p-6 max-w-5xl mx-auto space-y-6">
+  <h2 class="text-3xl font-bold text-center text-blue-500">💹 Crypto Portfolio (Signals)</h2>
+
+  <p-card>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <input pInputText placeholder="Name" [(ngModel)]="newCoin().name" class="p-inputtext-sm"  />
+      <input pInputText placeholder="Symbol" [(ngModel)]="newCoin().symbol" class="p-inputtext-sm" />
+      <input pInputText type="number" placeholder="Amount" [(ngModel)]="newCoin().amount" class="p-inputtext-sm" />
+      <input pInputText type="number" placeholder="Buy Price" [(ngModel)]="newCoin().buyPrice" class="p-inputtext-sm" />
+      <input pInputText type="number" placeholder="Current Price" [(ngModel)]="newCoin().currentPrice" class="p-inputtext-sm" />
+      <button pButton label="Добавить" icon="pi pi-plus" class="p-button-success" (click)="addCoin()"></button>
+    </div>
+  </p-card>
+
+  <p-table [value]="coins()" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Coin</th>
+        <th>Amount</th>
+        <th>Buy Price</th>
+        <th>Current Price</th>
+        <th>Profit</th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-coin let-i="rowIndex">
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ coin.name }} ({{ coin.symbol.toUpperCase() }})</td>
+        <td>{{ coin.amount }}</td>
+        <td>${{ coin.buyPrice }}</td>
+        <td>
+          ${{ coin.currentPrice }}
+          <button pButton icon="pi pi-plus" class="p-button-text p-button-sm" (click)="updatePrice(coin, 100)"></button>
+          <button pButton icon="pi pi-minus" class="p-button-text p-button-sm" (click)="updatePrice(coin, -100)"></button>
+        </td>
+        <td [ngClass]="coin.currentPrice > coin.buyPrice ? 'text-green-500' : 'text-red-500'">
+          ${{ (coin.currentPrice - coin.buyPrice) * coin.amount | number: '1.2-2' }}
+        </td>
+        <td>
+          <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="removeCoin(coin.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-card class="text-center mt-6">
+    <h3 class="text-xl font-semibold text-gray-700">
+      💰 Total Value: <span class="text-blue-600">${{ totalValue() | number: '1.2-2' }}</span>
+    </h3>
+    <h4 [ngClass]="totalProfit() > 0 ? 'text-green-500' : 'text-red-500'">
+      📈 Profit/Loss: {{ totalProfit() | number: '1.2-2' }} USD
+    </h4>
+  </p-card>
+</div>
+

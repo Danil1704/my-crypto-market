@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Crypto } from './crypto';
 
 describe('Crypto', () => {
   let service: Crypto;

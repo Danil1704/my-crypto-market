@@ -1,4 +1,4 @@
-<p-drawer [(visible)]="visible" [closable]="false">
+<p-drawer [(visible)]="drawerVisible" [closable]="false">
   <ng-template #header>
     <div class="flex items-center gap-2">
       <span class="font-bold">CRAPPO</span>
@@ -6,10 +6,6 @@
   </ng-template>
   <ul class="list-none p-0 m-0 overflow-hidden">
     <li>
-      <a href="#">
-        <i class="pi pi-desktop mr-2"></i>
-        <span class="font-medium">Dashboard</span>
-      </a>
       <a href="/register">
         <i class="pi pi-user-plus mr-2"></i>
         <span class="font-medium">Registration</span>
@@ -25,6 +21,18 @@
       <a href="/my-page">
         <i class="pi pi-home mr-2"></i>
         <span class="font-medium">Home</span>
+      </a>
+      <a href="/notes">
+        <i class="pi pi-list mr-2"></i>
+        <span class="font-medium">To Do List</span>
+      </a>
+      <a href="/analytics-dashboard">
+        <i class="pi pi-database mr-2"></i>
+        <span class="font-medium">Dashboard</span>
+      </a>
+      <a href="/signals-portfolio">
+        <i class="pi pi-dollar mr-2"></i>
+        <span class="font-medium">Portfolio</span>
       </a>
     </li>
   </ul>
@@ -42,37 +50,29 @@
     </div>
   </ng-template>
 </p-drawer>
-<button pButton (click)="visible = true" icon="pi pi-plus"></button>
+<button pButton (click)="drawerVisible = true" icon="pi pi-list"></button>
+
+<p-button class="ml-4" (click)="showDialog()" label="About us" />
+<p-dialog
+  header="CRAPPO"
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p>
+    CRAPPO - an innovative company specializing in cryptocurrency and blockchain technology
+    solutions. Our mission is to make digital finance simple, secure, and accessible to everyone. We
+    create and develop products that allow users to conveniently manage their digital assets,
+    conduct instant transactions, and take advantage of all the benefits of a decentralized economy.
+    Transparency, security, and technological excellence are at the core of our work.
+  </p>
+</p-dialog>
 
 <div class="title-wrapper">
   <div class="p-d-flex p-flex-column p-ai-center p-mt-5 p-gap-3">
-    <div class="title">
-      <div class="menu-buttons">
-        <p-button
-          label="Регистрация"
-          icon="pi pi-user-plus"
-          styleClass="p-button-success my-notes-btn"
-          routerLink="/register"
-        >
-        </p-button>
-        <p-button
-          label="Войти"
-          icon="pi pi-sign-in"
-          styleClass="p-button-primary my-notes-btn"
-          routerLink="/login"
-        >
-        </p-button>
-        <p-button
-          label="Список добавленных монет"
-          icon="pi pi-list"
-          styleClass="p-button-info my-notes-btn"
-          routerLink="/notes"
-        >
-        </p-button>
-        <p-button label="QR-код" icon="pi pi-qrcode" styleClass="p-button-info my-notes-btn">
-        </p-button>
-      </div>
-    </div>
     <div class="search-wrapper">
       <h1>CoinMarket</h1>
       <div class="search-input">
@@ -135,14 +135,14 @@
 
     <!-- Портфель -->
     <div class="p-m-4 p-w-100">
-      <h2>Мой портфель</h2>
+      <h2 class="text-center pt-5">Мой портфель</h2>
       <p-button
-        label="Добавить"
+        label=""
         icon="pi pi-plus"
         styleClass="p-button-success p-ml-2"
         (onClick)="displayDialog = true"
       ></p-button>
-      <p-table [value]="portfolio" [responsiveLayout]="'scroll'">
+      <p-table class="pt-5" [value]="portfolio" [responsiveLayout]="'scroll'">
         <ng-template pTemplate="header">
           <tr>
             <th>Coin</th>

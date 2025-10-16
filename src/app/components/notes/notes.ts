@@ -6,7 +6,7 @@ import { CheckboxChangeEvent, CheckboxModule } from 'primeng/checkbox';
 import { TableModule } from 'primeng/table';
 import { Todo } from './todo';
 import { InputTextModule } from 'primeng/inputtext';
-import { Service } from '../../service';
+import { TodoService } from '../../todo.service';
 
 @Component({
   selector: 'app-notes',
@@ -21,7 +21,7 @@ export class Notes implements OnInit{
   task = '';
   todos: Todo[] = [];
 
-  constructor(private service: Service) {
+  constructor(private service: TodoService) {
 
   }
 
