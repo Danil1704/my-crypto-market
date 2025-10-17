@@ -12,7 +12,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   standalone: true,
   imports: [ChartModule, CardModule, CommonModule, ButtonModule, DividerModule, ToolbarModule],
   templateUrl: './analytics-dashboard.html',
-  styleUrl: './analytics-dashboard.css'
+  styleUrls: ['./analytics-dashboard.css']
 })
 
 

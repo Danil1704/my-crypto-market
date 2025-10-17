@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-login',
   imports: [CardModule, InputTextModule, FormsModule, PasswordModule, ButtonModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
   login = {

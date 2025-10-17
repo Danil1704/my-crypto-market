@@ -11,11 +11,11 @@ import { SignalsPortfolio } from './components/signals-portfolio/signals-portfol
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
-  { path: 'notes', component: Notes },
-  { path: 'home', component: Home },
-  { path: 'my-page', component: MyPage},
-  { path: 'analytics-dashboard', component: AnalyticsDashboard },
-  { path: 'signals-portfolio', component: SignalsPortfolio },
+  { path: 'notes', component: Notes, canActivate: [authGuard] },
+  { path: 'home', component: Home, canActivate: [authGuard] },
+  { path: 'my-page', component: MyPage, canActivate: [authGuard]},
+  { path: 'analytics-dashboard', component: AnalyticsDashboard, canActivate: [authGuard] },
+  { path: 'signals-portfolio', component: SignalsPortfolio, canActivate: [authGuard] },
   { path: '', redirectTo: 'my-page', pathMatch: 'full' },
   { path: '**', redirectTo: 'my-page' }
 ];
