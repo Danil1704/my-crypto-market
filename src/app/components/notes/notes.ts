@@ -12,7 +12,7 @@ import { TodoService } from '../../todo.service';
   selector: 'app-notes',
   imports: [CardModule, TableModule, CheckboxModule, FormsModule, ButtonModule, InputTextModule],
   templateUrl: './notes.html',
-  styleUrl: './notes.css',
+  styleUrls: ['./notes.css'],
 })
 export class Notes implements OnInit{
 

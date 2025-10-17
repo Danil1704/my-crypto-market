@@ -9,7 +9,7 @@ import { InputText, InputTextModule } from "primeng/inputtext";
   selector: 'app-my-page',
   imports: [CommonModule, ButtonModule, ToolbarModule, RouterModule, InputTextModule],
   templateUrl: './my-page.html',
-  styleUrl: './my-page.css'
+  styleUrls: ['./my-page.css']
 })
 export class MyPage {
 

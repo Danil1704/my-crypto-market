@@ -9,7 +9,7 @@ import { ToastModule } from 'primeng/toast';
   imports: [RouterOutlet, ButtonModule, ToastModule],
   providers: [MessageService],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('primeng-app');

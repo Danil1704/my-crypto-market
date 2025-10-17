@@ -15,7 +15,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-register',
   imports: [ReactiveFormsModule, CardModule, InputTextModule, PasswordModule, ButtonModule, RouterLink],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css'],
 })
 export class Register {
   private registerService = inject(Auth)
